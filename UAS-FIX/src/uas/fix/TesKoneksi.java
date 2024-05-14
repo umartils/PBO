@@ -18,7 +18,7 @@ public class TesKoneksi {
 
     public static Connection configDB() throws SQLException {
         try {
-            String url = "jdbc:mysql://localhost/koneksi_jawa";
+            String url = "jdbc:mysql://localhost/db_klinik";
             String user = "root";
             String password = "";
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
