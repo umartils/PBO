@@ -6,6 +6,7 @@ package uas.fix;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class TesKoneksi {
     public static Connection mysqlconfig;
+    static PreparedStatement prepareStatement;
 
     public static Connection configDB() throws SQLException {
         try {
@@ -29,6 +31,10 @@ public class TesKoneksi {
         }
         return mysqlconfig;
    }
+
+    static PreparedStatement prepareStatement(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 
     /**

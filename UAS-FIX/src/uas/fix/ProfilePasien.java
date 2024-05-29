@@ -3,19 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package uas.fix;
+
 import java.awt.*;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author NekoMorie
  */
-public class dashboard extends javax.swing.JFrame {
+public class ProfilePasien extends javax.swing.JFrame {
 
     /**
      * Creates new form dashboard
      */
-    public dashboard() {
+    public ProfilePasien() {
         initComponents();
+        
     }
 
     /**
@@ -40,6 +48,27 @@ public class dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        nama = new javax.swing.JLabel();
+        namaField = new javax.swing.JTextField();
+        jurusan = new javax.swing.JLabel();
+        jurusanField = new javax.swing.JTextField();
+        no_wali = new javax.swing.JLabel();
+        no_waliField = new javax.swing.JTextField();
+        jk = new javax.swing.JLabel();
+        jkField = new javax.swing.JTextField();
+        riwayat_penyakit = new javax.swing.JLabel();
+        riwayat_penyakitField = new javax.swing.JTextField();
+        identitas = new javax.swing.JLabel();
+        identitasField = new javax.swing.JTextField();
+        no_telp = new javax.swing.JLabel();
+        no_telpField = new javax.swing.JTextField();
+        alamat = new javax.swing.JLabel();
+        alamatField = new javax.swing.JTextField();
+        gol_darah = new javax.swing.JLabel();
+        gol_darahField = new javax.swing.JTextField();
+        alergi_obat = new javax.swing.JLabel();
+        alergi_obatField = new javax.swing.JTextField();
+        daftar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,11 +77,10 @@ public class dashboard extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/navbar.png"))); // NOI18N
 
-        Dashboard.setBackground(new java.awt.Color(184, 17, 17));
         Dashboard.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Dashboard.setForeground(new java.awt.Color(255, 255, 255));
-        Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/dashboard_active.png"))); // NOI18N
+        Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/dashboard_1.png"))); // NOI18N
         Dashboard.setText("Dashboard");
+        Dashboard.setBorderPainted(false);
         Dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,11 +100,11 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
+        Pasien.setBackground(new java.awt.Color(184, 17, 17));
         Pasien.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Pasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pasien.png"))); // NOI18N
+        Pasien.setForeground(new java.awt.Color(255, 255, 255));
+        Pasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pasien-active.png"))); // NOI18N
         Pasien.setText("Pasien");
-        Pasien.setBorderPainted(false);
-        Pasien.setContentAreaFilled(false);
         Pasien.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Pasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Pasien.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +212,7 @@ public class dashboard extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel2.setText("Dashboard");
+        jLabel2.setText("Pasien");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -197,7 +225,7 @@ public class dashboard extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
+                .addContainerGap(377, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(274, 274, 274))
         );
@@ -209,21 +237,101 @@ public class dashboard extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        nama.setText("Nama");
+
+        namaField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaFieldActionPerformed(evt);
+            }
+        });
+
+        jurusan.setText("Jurusan");
+
+        no_wali.setText("No Telepon Wali");
+
+        jk.setText("Jenis Kelamin");
+
+        jkField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jkFieldActionPerformed(evt);
+            }
+        });
+
+        riwayat_penyakit.setText("Riwayat Penyakit ");
+
+        identitas.setText("Identitas");
+
+        identitasField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                identitasFieldActionPerformed(evt);
+            }
+        });
+
+        no_telp.setText("No Telepon");
+
+        alamat.setText("Alamat");
+
+        gol_darah.setText("Golongan Darah");
+
+        alergi_obat.setText("Alergi Obat");
+
+        daftar.setBackground(new java.awt.Color(132, 17, 17));
+        daftar.setForeground(new java.awt.Color(255, 255, 255));
+        daftar.setText("Daftar");
+        daftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daftarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(440, 440, 440)
+                                        .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(namaField)
+                                            .addComponent(jurusanField)
+                                            .addComponent(no_waliField)
+                                            .addComponent(jkField)
+                                            .addComponent(riwayat_penyakitField, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                            .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jk, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(riwayat_penyakit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(108, 108, 108)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(identitasField)
+                                            .addComponent(no_telpField)
+                                            .addComponent(alamatField)
+                                            .addComponent(gol_darahField)
+                                            .addComponent(alergi_obatField, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                            .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(gol_darah, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(alergi_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(416, 416, 416)
+                        .addComponent(daftar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +340,49 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nama)
+                    .addComponent(identitas))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(identitasField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jurusan)
+                    .addComponent(no_telp))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jurusanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(no_telpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(no_wali)
+                    .addComponent(alamat))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(no_waliField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alamatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jk)
+                    .addComponent(gol_darah))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jkField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gol_darahField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(riwayat_penyakit)
+                    .addComponent(alergi_obat))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(riwayat_penyakitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alergi_obatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(daftar)
+                .addGap(39, 39, 39)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -240,8 +390,9 @@ public class dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
-        dashboard dashboard = new dashboard();
+        ProfilePasien dashboard = new ProfilePasien();
         dashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DashboardActionPerformed
@@ -254,15 +405,13 @@ public class dashboard extends javax.swing.JFrame {
 
     private void PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasienActionPerformed
         // TODO add your handling code here:
-        Pasien Pasien = new Pasien();
+        ProfilePasien Pasien = new ProfilePasien();
         Pasien.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_PasienActionPerformed
 
     private void PenanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenanganActionPerformed
-        TambahObat obat = new TambahObat();
-        obat.setVisible(true);
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_PenanganActionPerformed
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
@@ -275,10 +424,63 @@ public class dashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
 
+    private void namaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaFieldActionPerformed
+
+    private void jkFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jkFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jkFieldActionPerformed
+
+    private void identitasFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identitasFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_identitasFieldActionPerformed
+
+    private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
+        // TODO add your handling code here:
+        String nama = namaField.getText();
+        String jurusan = jurusanField.getText();
+        String no_wali = no_waliField.getText();
+        String jk = jkField.getText();
+        String riwayat_penyakit = riwayat_penyakitField.getText();
+        String identitas = identitasField.getText();
+        String no_telp = no_telpField.getText();
+        String alamat = alamatField.getText();
+        String gol_darah = gol_darahField.getText();
+        String alergi_obat = alergi_obatField.getText();
+        
+        if (nama.isEmpty() || jurusan.isEmpty() || no_wali.isEmpty() || jk.isEmpty() || riwayat_penyakit.isEmpty() || identitas.isEmpty() || no_telp.isEmpty() || alamat.isEmpty() || gol_darah.isEmpty() || alergi_obat.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Semua harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try (Connection conn = TesKoneksi.configDB()){
+                String sql = "INSERT INTO pasien (nama, jurusan, no_wali, jk, riwayat_penyakit, identitas, no_telp, alamat, gol_darah, alergi_obat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, nama);
+                statement.setString(2, jurusan);
+                statement.setString(3, no_wali);
+                statement.setString(4, jk);
+                statement.setString(5, riwayat_penyakit);
+                statement.setString(6, identitas);
+                statement.setString(7, no_telp);
+                statement.setString(8, alamat);
+                statement.setString(9, gol_darah);
+                statement.setString(10, alergi_obat);
+                
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    JOptionPane.showMessageDialog(this, "Pasien berhasil ditambahkan!");
+                    this.dispose();
+            }
+        }   catch (Exception e) {
+                 e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah data pasien", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_daftarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -306,7 +508,7 @@ public class dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboard().setVisible(true);
+                new ProfilePasien().setVisible(true);
             }
         });
     }
@@ -318,6 +520,15 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Penangan;
     private javax.swing.JButton Profile;
     private javax.swing.JButton User;
+    private javax.swing.JLabel alamat;
+    private javax.swing.JTextField alamatField;
+    private javax.swing.JLabel alergi_obat;
+    private javax.swing.JTextField alergi_obatField;
+    private javax.swing.JButton daftar;
+    private javax.swing.JLabel gol_darah;
+    private javax.swing.JTextField gol_darahField;
+    private javax.swing.JLabel identitas;
+    private javax.swing.JTextField identitasField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -325,5 +536,17 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jk;
+    private javax.swing.JTextField jkField;
+    private javax.swing.JLabel jurusan;
+    private javax.swing.JTextField jurusanField;
+    private javax.swing.JLabel nama;
+    private javax.swing.JTextField namaField;
+    private javax.swing.JLabel no_telp;
+    private javax.swing.JTextField no_telpField;
+    private javax.swing.JLabel no_wali;
+    private javax.swing.JTextField no_waliField;
+    private javax.swing.JLabel riwayat_penyakit;
+    private javax.swing.JTextField riwayat_penyakitField;
     // End of variables declaration//GEN-END:variables
 }

@@ -255,11 +255,15 @@ public class users extends javax.swing.JFrame {
     }//GEN-LAST:event_UserActionPerformed
 
     private void User1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User1ActionPerformed
-        // TODO add your handling code here:
+        Pasien Pasien = new Pasien();
+        Pasien.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_User1ActionPerformed
 
     private void User2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User2ActionPerformed
-        // TODO add your handling code here:
+        TambahObat obat = new TambahObat();
+        obat.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_User2ActionPerformed
 
     private void User3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User3ActionPerformed
