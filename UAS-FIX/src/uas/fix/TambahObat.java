@@ -3,8 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package uas.fix;
+
 import java.awt.*;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import uas.fix.Login;
+import uas.fix.TesKoneksi;
 /**
  *
  * @author NekoMorie
@@ -16,6 +25,7 @@ public class TambahObat extends javax.swing.JFrame {
      */
     public TambahObat() {
         initComponents();
+        
     }
 
     /**
@@ -40,9 +50,17 @@ public class TambahObat extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        nama = new javax.swing.JLabel();
+        txtid_obat = new javax.swing.JTextField();
+        jurusan = new javax.swing.JLabel();
+        no_wali = new javax.swing.JLabel();
+        txtjenis = new javax.swing.JTextField();
+        identitas = new javax.swing.JLabel();
+        txtnama = new javax.swing.JTextField();
+        no_telp = new javax.swing.JLabel();
+        daftar = new javax.swing.JButton();
+        txtjenis_obat = new javax.swing.JTextField();
+        txtstok = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +72,8 @@ public class TambahObat extends javax.swing.JFrame {
         Dashboard.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/dashboard_1.png"))); // NOI18N
         Dashboard.setText("Dashboard");
+        Dashboard.setToolTipText("");
+        Dashboard.setBorderPainted(false);
         Dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,11 +93,11 @@ public class TambahObat extends javax.swing.JFrame {
             }
         });
 
+        Pasien.setBackground(new java.awt.Color(184, 17, 17));
         Pasien.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Pasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pasien.png"))); // NOI18N
+        Pasien.setForeground(new java.awt.Color(255, 255, 255));
+        Pasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pasien-active.png"))); // NOI18N
         Pasien.setText("Pasien");
-        Pasien.setBorderPainted(false);
-        Pasien.setContentAreaFilled(false);
         Pasien.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Pasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Pasien.addActionListener(new java.awt.event.ActionListener() {
@@ -86,14 +106,17 @@ public class TambahObat extends javax.swing.JFrame {
             }
         });
 
-        Penangan.setBackground(new java.awt.Color(184, 17, 17));
         Penangan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Penangan.setForeground(new java.awt.Color(255, 255, 255));
-        Penangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pengangan.png"))); // NOI18N
-        Penangan.setText("Penanganan");
+        Penangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/penagan.png"))); // NOI18N
+        Penangan.setText("Penangan");
+        Penangan.setBorderPainted(false);
+        Penangan.setContentAreaFilled(false);
         Penangan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Penangan.setFocusPainted(false);
         Penangan.setFocusable(false);
         Penangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Penangan.setRequestFocusEnabled(false);
+        Penangan.setRolloverEnabled(false);
         Penangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PenanganActionPerformed(evt);
@@ -165,7 +188,7 @@ public class TambahObat extends javax.swing.JFrame {
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 87, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(184, 17, 17));
@@ -182,7 +205,7 @@ public class TambahObat extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel2.setText("Penanganan");
+        jLabel2.setText("Obat");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -195,7 +218,7 @@ public class TambahObat extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(328, Short.MAX_VALUE)
+                .addContainerGap(377, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(274, 274, 274))
         );
@@ -207,62 +230,36 @@ public class TambahObat extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setText("Tambah Data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nama.setText("ID Obat");
+
+        txtid_obat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtid_obatActionPerformed(evt);
             }
         });
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "NAMA", "JENIS PENANGANAN", "DIAGNOSA", "TANGGAL", "JENIS OBAT", "BIAYA"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
+        jurusan.setText("Jenis Obat");
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        no_wali.setText("Jenis Penyakit");
+
+        identitas.setText("Nama Obat");
+
+        txtnama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnamaActionPerformed(evt);
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setEditingColumn(-2);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        no_telp.setText("Stok");
+
+        daftar.setBackground(new java.awt.Color(132, 17, 17));
+        daftar.setForeground(new java.awt.Color(255, 255, 255));
+        daftar.setText("Tambah");
+        daftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daftarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,20 +267,43 @@ public class TambahObat extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(813, 813, 813)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtid_obat, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                            .addComponent(txtjenis)
+                                            .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtjenis_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(137, 137, 137)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txtstok)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(daftar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,11 +312,29 @@ public class TambahObat extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(3, 3, 3)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nama)
+                    .addComponent(identitas))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtnama)
+                    .addComponent(txtid_obat))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jurusan)
+                    .addComponent(no_telp))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtjenis_obat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtstok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(no_wali)
+                .addGap(18, 18, 18)
+                .addComponent(txtjenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(daftar)
+                .addGap(102, 102, 102)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -304,6 +342,7 @@ public class TambahObat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
         TambahObat dashboard = new TambahObat();
         dashboard.setVisible(true);
@@ -317,15 +356,14 @@ public class TambahObat extends javax.swing.JFrame {
     }//GEN-LAST:event_UserActionPerformed
 
     private void PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasienActionPerformed
-       Pasien Pasien = new Pasien();
-       Pasien.setVisible(true);
-       this.dispose();
+        // TODO add your handling code here:
+        TambahObat Pasien = new TambahObat();
+        Pasien.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_PasienActionPerformed
 
     private void PenanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenanganActionPerformed
-        TambahObat Penanganan = new TambahObat();
-        Penanganan.setVisible(true);
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_PenanganActionPerformed
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
@@ -338,16 +376,53 @@ public class TambahObat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TambahData data = new TambahData();
-        data.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void txtid_obatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_obatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtid_obatActionPerformed
+
+    private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnamaActionPerformed
+
+    private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
+        // TODO add your handling code here:
+        String idObat = txtid_obat.getText();
+        String nama = txtnama.getText();
+        String jenis_obat = txtjenis_obat.getText();
+        String jenis_penyakit = txtjenis.getText();
+        String stok = txtstok.getText();
+        
+        if (nama.isEmpty() || idObat.isEmpty() || nama.isEmpty() || jenis_obat.isEmpty() || jenis_penyakit.isEmpty() || stok.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Semua harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try (Connection conn = TesKoneksi.configDB()){
+                String sql = "INSERT INTO obat (id_obat, nama_obat, jenis_obat, jenis_penyakit, stok) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, idObat);
+                statement.setString(2, nama);
+                statement.setString(3, jenis_obat);
+                statement.setString(4, jenis_penyakit);
+                statement.setString(5, stok);
+                
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    JOptionPane.showMessageDialog(this, "Pasien berhasil ditambahkan!");
+                    
+                }
+                Pasien Back = new Pasien();
+                Back.setVisible(true);
+                this.dispose();
+            }catch (Exception e) {
+                 e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah data pasien", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+    }//GEN-LAST:event_daftarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -387,15 +462,23 @@ public class TambahObat extends javax.swing.JFrame {
     private javax.swing.JButton Penangan;
     private javax.swing.JButton Profile;
     private javax.swing.JButton User;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton daftar;
+    private javax.swing.JLabel identitas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jurusan;
+    private javax.swing.JLabel nama;
+    private javax.swing.JLabel no_telp;
+    private javax.swing.JLabel no_wali;
+    private javax.swing.JTextField txtid_obat;
+    private javax.swing.JTextField txtjenis;
+    private javax.swing.JTextField txtjenis_obat;
+    private javax.swing.JTextField txtnama;
+    private javax.swing.JTextField txtstok;
     // End of variables declaration//GEN-END:variables
 }

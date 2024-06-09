@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import uas.fix.Login;
+import uas.fix.TesKoneksi;
 /**
  *
  * @author NekoMorie
@@ -51,7 +53,6 @@ public class TambahPasien extends javax.swing.JFrame {
         nama = new javax.swing.JLabel();
         txtnama = new javax.swing.JTextField();
         jurusan = new javax.swing.JLabel();
-        txtjurusan = new javax.swing.JTextField();
         no_wali = new javax.swing.JLabel();
         txtno_wali = new javax.swing.JTextField();
         jk = new javax.swing.JLabel();
@@ -60,17 +61,18 @@ public class TambahPasien extends javax.swing.JFrame {
         identitas = new javax.swing.JLabel();
         txtidentitas = new javax.swing.JTextField();
         no_telp = new javax.swing.JLabel();
-        txtno_telp = new javax.swing.JTextField();
         alamat = new javax.swing.JLabel();
         txtalamat = new javax.swing.JTextField();
         gol_darah = new javax.swing.JLabel();
-        txtgol_darah = new javax.swing.JTextField();
         alergi_obat = new javax.swing.JLabel();
         txtalergi_obat = new javax.swing.JTextField();
         daftar = new javax.swing.JButton();
         jkcombo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         identitascombo = new javax.swing.JComboBox<>();
+        combo_goldar = new javax.swing.JComboBox<>();
+        combo_jurusan = new javax.swing.JComboBox<>();
+        txtno_telp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -248,7 +250,7 @@ public class TambahPasien extends javax.swing.JFrame {
             }
         });
 
-        jurusan.setText("Jurusan");
+        jurusan.setText("No Telepon");
 
         no_wali.setText("No Telepon Wali");
 
@@ -264,7 +266,7 @@ public class TambahPasien extends javax.swing.JFrame {
             }
         });
 
-        no_telp.setText("No Telepon");
+        no_telp.setText("Jurusan/Jabatan");
 
         alamat.setText("Alamat");
 
@@ -285,7 +287,11 @@ public class TambahPasien extends javax.swing.JFrame {
 
         jLabel4.setText("Identitas");
 
-        identitascombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mahasiswa", "Dosen", "Staff", " " }));
+        identitascombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mahasiswa", "Civitas", " " }));
+
+        combo_goldar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Golongan Darah", "A", "B", "O", "AB" }));
+
+        combo_jurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "PGSD", "PGPAUD", "PMM", "RPL", "TEKKOM", "Dosen", "Tendik", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,55 +307,57 @@ public class TambahPasien extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtno_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(137, 137, 137)
+                                        .addComponent(combo_jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(440, 440, 440)
-                                                .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(13, 13, 13)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(txtnama)
+                                                        .addComponent(txtno_wali)
+                                                        .addComponent(txtriwayat_penyakit, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                                        .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(riwayat_penyakit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(139, 139, 139))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(12, 12, 12)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jkcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jk, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(identitascombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(225, 225, 225)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(13, 13, 13)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtnama)
-                                                    .addComponent(txtjurusan)
-                                                    .addComponent(txtno_wali)
-                                                    .addComponent(txtriwayat_penyakit, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(riwayat_penyakit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(jk, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                                .addGap(108, 108, 108))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addComponent(jkcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(identitascombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(225, 225, 225)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtidentitas)
-                                            .addComponent(txtno_telp)
-                                            .addComponent(txtalamat)
-                                            .addComponent(txtgol_darah)
-                                            .addComponent(txtalergi_obat, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                                            .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(gol_darah, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(alergi_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(430, 430, 430)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtidentitas)
+                                                .addComponent(txtalamat)
+                                                .addComponent(txtalergi_obat, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                                                .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(gol_darah, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(alergi_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(combo_goldar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(416, 416, 416)
                         .addComponent(daftar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,15 +374,15 @@ public class TambahPasien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidentitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jurusan)
                     .addComponent(no_telp))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtjurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtno_telp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(no_wali)
                     .addComponent(alamat))
@@ -382,16 +390,16 @@ public class TambahPasien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtno_wali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtalamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jk)
                     .addComponent(gol_darah)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtgol_darah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jkcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(identitascombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(identitascombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_goldar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(riwayat_penyakit)
@@ -412,8 +420,8 @@ public class TambahPasien extends javax.swing.JFrame {
 
    
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
-        TambahPasien dashboard = new TambahPasien();
-        dashboard.setVisible(true);
+        dashboard back = new dashboard();
+        back.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DashboardActionPerformed
 
@@ -455,7 +463,7 @@ public class TambahPasien extends javax.swing.JFrame {
     private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
         // TODO add your handling code here:
         String nama = txtnama.getText();
-        String jurusan = txtjurusan.getText();
+        String jurusan = (String) combo_jurusan.getSelectedItem();
         String no_wali = txtno_wali.getText();
         String jk = (String)jkcombo.getSelectedItem();
         String identitas = (String)identitascombo.getSelectedItem();  
@@ -463,7 +471,7 @@ public class TambahPasien extends javax.swing.JFrame {
         String NoIdentitas = txtidentitas.getText();
         String no_telp = txtno_telp.getText();
         String alamat = txtalamat.getText();
-        String gol_darah = txtgol_darah.getText();
+        String gol_darah = (String) combo_goldar.getSelectedItem();
         String alergi_obat = txtalergi_obat.getText();
         
         if (nama.isEmpty() || jurusan.isEmpty() || no_wali.isEmpty() || jk.isEmpty() || riwayat_penyakit.isEmpty() || NoIdentitas.isEmpty() || no_telp.isEmpty() || alamat.isEmpty() || gol_darah.isEmpty() || alergi_obat.isEmpty()){
@@ -489,6 +497,9 @@ public class TambahPasien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Pasien berhasil ditambahkan!");
                     
                 }
+                Pasien Back = new Pasien();
+                Back.setVisible(true);
+                this.dispose();
             }catch (Exception e) {
                  e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah data pasien", "Error", JOptionPane.ERROR_MESSAGE);
@@ -541,6 +552,8 @@ public class TambahPasien extends javax.swing.JFrame {
     private javax.swing.JButton User;
     private javax.swing.JLabel alamat;
     private javax.swing.JLabel alergi_obat;
+    private javax.swing.JComboBox<String> combo_goldar;
+    private javax.swing.JComboBox<String> combo_jurusan;
     private javax.swing.JButton daftar;
     private javax.swing.JLabel gol_darah;
     private javax.swing.JLabel identitas;
@@ -562,9 +575,7 @@ public class TambahPasien extends javax.swing.JFrame {
     private javax.swing.JLabel riwayat_penyakit;
     private javax.swing.JTextField txtalamat;
     private javax.swing.JTextField txtalergi_obat;
-    private javax.swing.JTextField txtgol_darah;
     private javax.swing.JTextField txtidentitas;
-    private javax.swing.JTextField txtjurusan;
     private javax.swing.JTextField txtnama;
     private javax.swing.JTextField txtno_telp;
     private javax.swing.JTextField txtno_wali;

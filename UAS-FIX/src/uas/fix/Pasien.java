@@ -61,12 +61,11 @@ public class Pasien extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tambah = new javax.swing.JButton();
-        HapusPasien = new javax.swing.JButton();
-        edit = new javax.swing.JButton();
         layar1 = new javax.swing.JDesktopPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_pasien = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        cari = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -248,24 +247,6 @@ public class Pasien extends javax.swing.JFrame {
             }
         });
 
-        HapusPasien.setBackground(new java.awt.Color(132, 17, 17));
-        HapusPasien.setForeground(new java.awt.Color(255, 255, 255));
-        HapusPasien.setText("Hapus Pasien");
-        HapusPasien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HapusPasienActionPerformed(evt);
-            }
-        });
-
-        edit.setBackground(new java.awt.Color(132, 17, 17));
-        edit.setForeground(new java.awt.Color(255, 255, 255));
-        edit.setText("Edit Pasien");
-        edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editActionPerformed(evt);
-            }
-        });
-
         layar1.setBackground(new java.awt.Color(255, 255, 255));
         layar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -356,6 +337,15 @@ public class Pasien extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        cari.setBackground(new java.awt.Color(132, 17, 17));
+        cari.setForeground(new java.awt.Color(255, 255, 255));
+        cari.setText("Cari Pasien");
+        cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -373,12 +363,10 @@ public class Pasien extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(edit)
-                                .addGap(31, 31, 31)
                                 .addComponent(tambah)
-                                .addGap(27, 27, 27)
-                                .addComponent(HapusPasien)
-                                .addGap(211, 211, 211))
+                                .addGap(18, 18, 18)
+                                .addComponent(cari)
+                                .addGap(210, 210, 210))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(layar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,24 +383,23 @@ public class Pasien extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tambah)
-                    .addComponent(HapusPasien)
-                    .addComponent(edit))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(108, 108, 108)
+                        .addComponent(layar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tambah)
+                            .addComponent(cari))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(layar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         pack();
@@ -435,7 +422,7 @@ public class Pasien extends javax.swing.JFrame {
         
         try {
           int counter = 1;
-          String query = "SELECT nama, NoIdentitas, identitas, jurusan, no_telp, riwayat_penyakit FROM pasien" ;
+          String query = "SELECT * FROM pasien" ;
           
             java.sql.Connection configDB = (java.sql.Connection)TesKoneksi.configDB();
             
@@ -465,8 +452,8 @@ public class Pasien extends javax.swing.JFrame {
         }
     }
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
-        Pasien dashboard = new Pasien();
-        dashboard.setVisible(true);
+        dashboard back = new dashboard();
+        back.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DashboardActionPerformed
 
@@ -484,7 +471,7 @@ public class Pasien extends javax.swing.JFrame {
     }//GEN-LAST:event_PasienActionPerformed
 
     private void PenanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenanganActionPerformed
-        TambahObat obat = new TambahObat();
+        Obat obat = new Obat();
         obat.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_PenanganActionPerformed
@@ -505,37 +492,6 @@ public class Pasien extends javax.swing.JFrame {
         tambahPasien.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tambahActionPerformed
-
-    private void HapusPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusPasienActionPerformed
-        // TODO add your handling code here:
-        int cek_dile =JOptionPane.showConfirmDialog(null, "Apakah Yakin Untuk Menghapus Data?", "Konfirmasi" , JOptionPane.YES_NO_OPTION);
-        String No = tbl_pasien.getValueAt(tbl_pasien.getSelectedRow(), 0).toString();
-        
-            
-            try {
-                PreparedStatement prStatement = null;
-//                String sql="DELETE FROM pasien WHERE no_identitas= '" + ? ";
-//                PreparedStatement pr=TesKoneksi.prepareStatement(sql);
-                
-                prStatement.setString(1, No);
-                int intHapus = prStatement.executeUpdate();
-                if (intHapus>0)
-                    JOptionPane.showMessageDialog(this, "Data Berhasil Dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                else 
-                    JOptionPane.showMessageDialog(this, "Data Gagal Dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                    prStatement.close();
-                tampil_table();
-                } catch (SQLException e) {
-                    System.out.println("koneksi gagal" + e.toString());
-            }
-        
-    }//GEN-LAST:event_HapusPasienActionPerformed
-
-    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-//        LihatPasien LP = new LihatPasien("coba");
-//        layar1.add(LP);
-//        LP.setVisible(true);
-    }//GEN-LAST:event_editActionPerformed
     
     
     
@@ -545,7 +501,7 @@ public class Pasien extends javax.swing.JFrame {
         
         
         String no_idenitas = tbl_pasien.getValueAt(baris, 1).toString();
-        LihatPasien LP = new LihatPasien(no_identitas);
+        LihatPasien LP = new LihatPasien();
         layar1.add(LP);
         LP.setVisible(true);
         
@@ -553,21 +509,25 @@ public class Pasien extends javax.swing.JFrame {
         
         String nama = tm.getValueAt(baris, 1).toString();
         String NoIdentitas = tm.getValueAt(baris, 2).toString();    
-        String no_telp= tm.getValueAt(baris, 3).toString();
-        String gol_darah = tm.getValueAt(baris, 4).toString();
-        String alergi_obat = tm.getValueAt(baris, 5).toString();
+        String identitas= tm.getValueAt(baris, 3).toString();
+        String jurusan = tm.getValueAt(baris, 4).toString();
+        String no_telp = tm.getValueAt(baris, 5).toString();
         String riwayat_penyakit = tm.getValueAt(baris, 6).toString();
         
         LP.txtnama.setText(nama);
         LP.txtidentitas.setText(NoIdentitas);
         LP.txtno_telp.setText(no_telp);
-        LP.txtjurusan.setText(gol_darah);
-        LP.txtgol_darah.setText(alergi_obat);
-        LP.txtalergi_obat.setText(riwayat_penyakit);
+        LP.combo_jurusan.setSelectedItem(jurusan);
+        LP.combo_identitas.setSelectedItem(identitas);
+        LP.txt_riwayat.setText(riwayat_penyakit);
         
         LP.pack();
         LP.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_tbl_pasienMouseClicked
+
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariActionPerformed
     
     
     /**
@@ -609,13 +569,12 @@ public class Pasien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dashboard;
-    private javax.swing.JButton HapusPasien;
     private javax.swing.JButton LogOut;
     private javax.swing.JButton Pasien;
     private javax.swing.JButton Penangan;
     private javax.swing.JButton Profile;
     private javax.swing.JButton User;
-    private javax.swing.JButton edit;
+    private javax.swing.JButton cari;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
