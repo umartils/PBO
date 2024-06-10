@@ -4,18 +4,29 @@
  */
 package uas.fix;
 import java.awt.*;
+import java.sql.SQLException;
 import javax.swing.*;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author NekoMorie
  */
 public class dashboard extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form dashboard
      */
     public dashboard() {
         initComponents();
+        String coba= obat();
+        String pas = pasien();
+        String Us = user();
+        tbl_obat();
+        tbl_user();
+        value_user.setText(Us);
+        value_pasien.setText(pas);
+        value_Obat.setText(coba);
     }
 
     /**
@@ -40,6 +51,19 @@ public class dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        value_pasien = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        value_user = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_obat_habis = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        value_Obat = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_user = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,7 +191,7 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 129, Short.MAX_VALUE))
+                .addGap(0, 140, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(184, 17, 17));
@@ -197,17 +221,143 @@ public class dashboard extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(274, 274, 274))
+                .addGap(474, 474, 474))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Jumlah Pasien");
+
+        value_pasien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        value_pasien.setText("Jumlah Pasien");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(value_pasien)))
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(value_pasien)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Jumlah User");
+
+        value_user.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        value_user.setText("Jumlah User");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(value_user)))
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(value_user)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        tbl_obat_habis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_obat_habis);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Jumlah Obat");
+
+        value_Obat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        value_Obat.setText("Jumlah Obat");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(value_Obat)))
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(value_Obat)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        tbl_user.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tbl_user);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,14 +365,28 @@ public class dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(321, 321, 321)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 58, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,12 +396,22 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
@@ -274,7 +448,145 @@ public class dashboard extends javax.swing.JFrame {
         Login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
+    private void tbl_obat(){
+        DefaultTableModel tb = new DefaultTableModel();
+        tb.addColumn("No");
+        tb.addColumn("Nama Obat");
+        tb.addColumn("Jenis Obat");   
+        tb.addColumn("Stok Obat");
+        
+        
+        try {
+          int counter = 1;
+          String query = "SELECT * FROM obat WHERE stok < 10" ;
+          
+            java.sql.Connection configDB = (java.sql.Connection)TesKoneksi.configDB();
+            
+            java.sql.Statement s = configDB.createStatement();
+            
+            java.sql.ResultSet r = s.executeQuery(query);
+            
+            while (r.next()) {
+                tb.addRow(new Object[]{
+                    counter++,
+                    r.getString("nama_obat"),
+                    r.getString("jenis_obat"),
+                    r.getString("stok")
+                });
+//                String noIdentitas = r.getString("Username");
+            }
+            tbl_obat_habis.setModel(tb);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void tbl_user(){
+        DefaultTableModel tb = new DefaultTableModel();
+        tb.addColumn("No");
+        tb.addColumn("Nama");
+        tb.addColumn("Username");   
+        tb.addColumn("Tanggal Login");
+        
+        
+        try {
+          int counter = 1;
+          String query = "SELECT * FROM user ORDER BY login_at DESC" ;
+          
+            java.sql.Connection configDB = (java.sql.Connection)TesKoneksi.configDB();
+            
+            java.sql.Statement s = configDB.createStatement();
+            
+            java.sql.ResultSet r = s.executeQuery(query);
+            
+            while (r.next()) {
+                tb.addRow(new Object[]{
+                    counter++,
+                    r.getString("name"),
+                    r.getString("username"),
+                    r.getString("login_at")
+                });
+//                String noIdentitas = r.getString("Username");
+            }
+            tbl_user.setModel(tb);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String user(){
+        try {
+            // Assuming TesKoneksi.configDB() returns a Connection object
+            Connection configDB = TesKoneksi.configDB();
+            String query = "SELECT SUM(id) AS total_user FROM user";
+            Statement s = configDB.createStatement();
+            ResultSet r = s.executeQuery(query);
 
+            if (r.next()) {
+                String totalObat = r.getString("total_user");
+//                value_pasien.setText(totalObat);
+                return totalObat;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            value_pasien.setText("Error retrieving data.");         
+
+        }
+//        return "40";
+//                return totalObat;
+             return null;
+
+                
+    }
+    private String pasien(){
+        try {
+            // Assuming TesKoneksi.configDB() returns a Connection object
+            Connection configDB = TesKoneksi.configDB();
+            String query = "SELECT SUM(id_pasien) AS total_pasien FROM pasien";
+            Statement s = configDB.createStatement();
+            ResultSet r = s.executeQuery(query);
+
+            if (r.next()) {
+                String totalObat = r.getString("total_pasien");
+//                value_pasien.setText(totalObat);
+                return totalObat;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            value_pasien.setText("Error retrieving data.");         
+
+        }
+//        return "40";
+//                return totalObat;
+             return null;
+
+                
+    }
+    
+    private String obat(){
+        try {
+            // Assuming TesKoneksi.configDB() returns a Connection object
+            Connection configDB = TesKoneksi.configDB();
+            String query = "SELECT SUM(id_obat) AS total_obat FROM obat";
+            Statement s = configDB.createStatement();
+            ResultSet r = s.executeQuery(query);
+
+            if (r.next()) {
+                String totalObat = r.getString("total_obat");
+//                value_pasien.setText(totalObat);
+                return totalObat;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            value_pasien.setText("Error retrieving data.");         
+
+        }
+//        return "40";
+//                return totalObat;
+             return null;
+
+                
+    }
     /**
      * @param args the command line arguments
      */
@@ -289,9 +601,22 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable tbl_obat_habis;
+    private javax.swing.JTable tbl_user;
+    private javax.swing.JLabel value_Obat;
+    private javax.swing.JLabel value_pasien;
+    private javax.swing.JLabel value_user;
     // End of variables declaration//GEN-END:variables
 }
