@@ -5,6 +5,8 @@
 package uas.fix;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author NekoMorie
@@ -15,7 +17,9 @@ public class Obat extends javax.swing.JFrame {
      * Creates new form dashboard
      */
     public Obat() {
+        
         initComponents();
+        tampil_table();
     }
 
     /**
@@ -32,17 +36,19 @@ public class Obat extends javax.swing.JFrame {
         Dashboard = new javax.swing.JButton();
         User = new javax.swing.JButton();
         Pasien = new javax.swing.JButton();
-        Penangan = new javax.swing.JButton();
+        Penanganan = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         Profile = new javax.swing.JButton();
         LogOut = new javax.swing.JButton();
+        Obat = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        tambahobat = new javax.swing.JButton();
+        layar2 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_obat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +60,8 @@ public class Obat extends javax.swing.JFrame {
         Dashboard.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/dashboard_1.png"))); // NOI18N
         Dashboard.setText("Dashboard");
+        Dashboard.setBorderPainted(false);
+        Dashboard.setContentAreaFilled(false);
         Dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,17 +94,17 @@ public class Obat extends javax.swing.JFrame {
             }
         });
 
-        Penangan.setBackground(new java.awt.Color(184, 17, 17));
-        Penangan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Penangan.setForeground(new java.awt.Color(255, 255, 255));
-        Penangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/pengangan.png"))); // NOI18N
-        Penangan.setText("Penanganan");
-        Penangan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Penangan.setFocusable(false);
-        Penangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Penangan.addActionListener(new java.awt.event.ActionListener() {
+        Penanganan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Penanganan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/penagan.png"))); // NOI18N
+        Penanganan.setText("Penanganan");
+        Penanganan.setBorderPainted(false);
+        Penanganan.setContentAreaFilled(false);
+        Penanganan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Penanganan.setFocusable(false);
+        Penanganan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Penanganan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PenanganActionPerformed(evt);
+                PenangananActionPerformed(evt);
             }
         });
 
@@ -124,6 +132,20 @@ public class Obat extends javax.swing.JFrame {
             }
         });
 
+        Obat.setBackground(new java.awt.Color(184, 17, 17));
+        Obat.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Obat.setForeground(new java.awt.Color(255, 255, 255));
+        Obat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/icon/obat-active.png"))); // NOI18N
+        Obat.setText("Obat");
+        Obat.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Obat.setFocusable(false);
+        Obat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Obat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,20 +154,21 @@ public class Obat extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(LogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jSeparator1)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Dashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(User, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pasien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Penangan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Obat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Penanganan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,8 +181,10 @@ public class Obat extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Pasien, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Penangan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109)
+                .addComponent(Obat, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(Penanganan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +207,7 @@ public class Obat extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel2.setText("Penanganan");
+        jLabel2.setText("Obat");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -195,7 +220,7 @@ public class Obat extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(328, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(274, 274, 274))
         );
@@ -207,18 +232,18 @@ public class Obat extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(132, 17, 17));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tambah Data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tambahobat.setBackground(new java.awt.Color(132, 17, 17));
+        tambahobat.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        tambahobat.setForeground(new java.awt.Color(255, 255, 255));
+        tambahobat.setText("Tambah Data");
+        tambahobat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tambahobatActionPerformed(evt);
             }
         });
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_obat.setAutoCreateRowSorter(true);
+        tbl_obat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -248,7 +273,7 @@ public class Obat extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NAMA", "JENIS PENANGANAN", "DIAGNOSA", "TANGGAL", "JENIS OBAT", "BIAYA"
+                "No", "Kode Obat", "Nama Obat", "Jenis Obat", "Jenis Penyakit", "Stok (strip)", "Harga"
             }
         ) {
             Class[] types = new Class [] {
@@ -259,12 +284,31 @@ public class Obat extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setEditingColumn(-2);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_obat.setColumnSelectionAllowed(true);
+        tbl_obat.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbl_obat.setEditingColumn(-2);
+        tbl_obat.setEnabled(false);
+        tbl_obat.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tbl_obat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_obatMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_obat);
+        tbl_obat.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        layar2.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout layar2Layout = new javax.swing.GroupLayout(layar2);
+        layar2.setLayout(layar2Layout);
+        layar2Layout.setHorizontalGroup(
+            layar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+        );
+        layar2Layout.setVerticalGroup(
+            layar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,20 +316,22 @@ public class Obat extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(813, 813, 813)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tambahobat, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(layar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(11, 11, 11))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,21 +339,70 @@ public class Obat extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(3, 3, 3)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tambahobat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addComponent(layar2)
+                .addGap(36, 36, 36)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    String coba(String no_identitas){
+        return no_identitas;
+    }
+    private void tampil_table()
+    {
+        DefaultTableModel tb = new DefaultTableModel();
+        tb.addColumn("No");
+        tb.addColumn("Kode Obat");
+        tb.addColumn("Nama Obat");
+        tb.addColumn ("Jenis Obat");
+        tb.addColumn("Jenis Penyakit");
+        tb.addColumn("Stok");
+        tb.addColumn("Harga");
+        
+        
+        try {
+          int counter = 1;
+          String query = "SELECT * FROM obat" ;
+          
+            java.sql.Connection configDB = (java.sql.Connection)TesKoneksi.configDB();
+            
+            java.sql.Statement s = configDB.createStatement();
+            
+            java.sql.ResultSet r = s.executeQuery(query);
+            
+            while (r.next()) {
+                tb.addRow(new Object[]{
+                    counter++,
+                    r.getString("Id_obat"),
+                    r.getString("nama_obat"),
+                    r.getString("jenis_obat"),
+                    r.getString("jenis_penyakit"),
+                    r.getString("stok"),
+                    r.getString("harga_obat")
+                });
+            }
+            tbl_obat.setModel(tb);
+            String idobat = r.getString("Id_obat");
+                    
 
+            coba(idobat);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
-        Obat dashboard = new Obat();
+        dashboard dashboard = new dashboard();
         dashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DashboardActionPerformed
@@ -324,11 +419,11 @@ public class Obat extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_PasienActionPerformed
 
-    private void PenanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenanganActionPerformed
-        Obat Penanganan = new Obat();
-        Penanganan.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_PenanganActionPerformed
+    private void PenangananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenangananActionPerformed
+//        Penanganan Penanganan = new Penanganan();
+  //      Penanganan.setVisible(true);
+  //      this.dispose();
+    }//GEN-LAST:event_PenangananActionPerformed
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
         // TODO add your handling code here:
@@ -340,21 +435,55 @@ public class Obat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TambahData data = new TambahData();
-        data.setVisible(true);
+    private void tambahobatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahobatActionPerformed
+        TambahObat obat = new TambahObat();
+        obat.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_tambahobatActionPerformed
+
+    private void ObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ObatActionPerformed
+
+    private void tbl_obatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_obatMouseClicked
+        // TODO add your handling code here:
+        int baris = tbl_obat.rowAtPoint(evt.getPoint());
+        
+        
+        String kode = tbl_obat.getValueAt(baris, 1).toString();
+        LihatObat LO = new LihatObat();
+        layar2.add(LO);
+        LO.setVisible(true);
+        
+        TableModel tm = tbl_obat.getModel();
+        
+        String nama = tm.getValueAt(baris, 2).toString();
+        String kode_Obat = tm.getValueAt(baris, 1).toString();    
+        String jenis_obat = tm.getValueAt(baris, 3).toString();
+        String jenis_penyakit = tm.getValueAt(baris, 4).toString();
+        String stok = tm.getValueAt(baris, 5).toString();
+        String harga = tm.getValueAt(baris, 6).toString();
+        
+        LO.txtnama.setText(nama);
+        LO.txtkode.setText(kode_Obat);
+        LO.jeniscombo.setSelectedItem(jenis_obat);
+        LO.penyakitcombo.setSelectedItem(jenis_penyakit);
+        LO.txtstok.setText(stok);
+        LO.txtharga.setText(harga);
+        
+        LO.pack();
+        LO.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_tbl_obatMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton LogOut;
+    private javax.swing.JButton Obat;
     private javax.swing.JButton Pasien;
-    private javax.swing.JButton Penangan;
+    private javax.swing.JButton Penanganan;
     private javax.swing.JButton Profile;
     private javax.swing.JButton User;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -363,6 +492,8 @@ public class Obat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JDesktopPane layar2;
+    private javax.swing.JButton tambahobat;
+    private javax.swing.JTable tbl_obat;
     // End of variables declaration//GEN-END:variables
 }

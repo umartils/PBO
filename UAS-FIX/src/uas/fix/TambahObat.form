@@ -31,39 +31,36 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtid_obat" alignment="0" pref="369" max="32767" attributes="0"/>
-                                          <Component id="txtjenis" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtid_obat" alignment="0" min="-2" pref="369" max="-2" attributes="0"/>
                                           <Component id="jurusan" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                                           <Component id="no_wali" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <Component id="nama" min="-2" pref="113" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="txtjenis_obat" min="-2" pref="372" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="identitas" min="-2" pref="86" max="-2" attributes="0"/>
-                                          <Component id="txtnama" min="-2" pref="369" max="-2" attributes="0"/>
-                                          <Component id="no_telp" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Component id="obatcombo" alignment="1" min="-2" pref="370" max="-2" attributes="0"/>
+                                          <Component id="penyakitcombo" alignment="1" min="-2" pref="370" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="txtstok" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="identitas" min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="no_telp" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <Component id="txtharga" alignment="0" pref="375" max="32767" attributes="0"/>
+                                      <Component id="txtstok" max="32767" attributes="0"/>
+                                      <Component id="txtnama" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel4" min="-2" pref="37" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanel2" max="32767" attributes="0"/>
                           <Component id="jPanel4" max="32767" attributes="0"/>
@@ -103,13 +100,19 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtjenis_obat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtstok" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="obatcombo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="no_wali" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="no_wali" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="txtjenis" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtharga" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="penyakitcombo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="daftar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
@@ -157,8 +160,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Dashboard" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
                       <Component id="User" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
+                      <Component id="Obat" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
+                      <Component id="Penanganan" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
                       <Component id="Pasien" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
-                      <Component id="Penangan" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -173,9 +177,11 @@
                   <Component id="User" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Pasien" min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="Obat" min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="Penanganan" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Penangan" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="Profile" min="-2" pref="49" max="-2" attributes="0"/>
@@ -228,7 +234,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Pasien">
+        <Component class="javax.swing.JButton" name="Obat">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="11" green="11" red="b8" type="rgb"/>
@@ -240,19 +246,19 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/assets/image/icon/pasien-active.png"/>
+              <Image iconType="3" name="/assets/image/icon/obat-active.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pasien"/>
+            <Property name="text" type="java.lang.String" value="Obat"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PasienActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ObatActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Penangan">
+        <Component class="javax.swing.JButton" name="Penanganan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="16" style="1"/>
@@ -273,7 +279,7 @@
             <Property name="rolloverEnabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PenanganActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PenangananActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -311,6 +317,22 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogOutActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Pasien">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="16" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/assets/image/icon/pasien.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pasien"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -356,7 +378,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="377" max="32767" attributes="0"/>
+                  <EmptySpace pref="285" max="32767" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
               </Group>
@@ -403,8 +425,6 @@
         <Property name="text" type="java.lang.String" value="Jenis Penyakit"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtjenis">
-    </Component>
     <Component class="javax.swing.JLabel" name="identitas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nama Obat"/>
@@ -434,9 +454,44 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="daftarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtjenis_obat">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtstok">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtharga">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Harga"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="obatcombo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Pilih Obat"/>
+            <StringItem index="1" value="Bebas"/>
+            <StringItem index="2" value="Terbatas"/>
+            <StringItem index="3" value="Keras"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="penyakitcombo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Pilih"/>
+            <StringItem index="1" value="Ringan"/>
+            <StringItem index="2" value="Sedang"/>
+            <StringItem index="3" value="Berat"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
