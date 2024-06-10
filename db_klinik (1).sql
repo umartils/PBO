@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 14, 2024 at 03:05 PM
+-- Generation Time: Jun 09, 2024 at 01:50 PM
 -- Server version: 8.0.30
--- PHP Version: 7.4.19
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jenis_penangan`
+--
+
+CREATE TABLE `jenis_penangan` (
+  `jenis_penangan` varchar(255) DEFAULT NULL,
+  `harga` decimal(20,6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `obat`
 --
 
@@ -34,7 +45,8 @@ CREATE TABLE `obat` (
   `jenis_penyakit` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `stok` char(11) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT NULL,
+  `harga_obat` decimal(20,6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -60,6 +72,13 @@ CREATE TABLE `pasien` (
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`id_pasien`, `NoIdentitas`, `nama`, `identitas`, `jurusan`, `jk`, `no_telp`, `no_wali`, `alamat`, `riwayat_penyakit`, `gol_darah`, `alergi_obat`, `update_at`, `created_at`) VALUES
+(1, '231', 'Coba', 'SADAD', 'KOMPUTER', 'Dosen', '123124', '123123', 'ASDAS', 'Laki-Laki', 'D', 'ASDA', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -70,7 +89,7 @@ CREATE TABLE `penangan` (
   `id_penanganan` int NOT NULL,
   `id_user` int NOT NULL,
   `id_pasien` int NOT NULL,
-  `jenis_penangan` varchar(50) NOT NULL DEFAULT '',
+  `jenis_penangan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
   `diagnosa` text NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -97,8 +116,8 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `create_at` int DEFAULT NULL,
-  `update_at` int DEFAULT NULL
+  `create_at` datetime DEFAULT NULL,
+  `update_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,6 +130,12 @@ INSERT INTO `user` (`id`, `username`, `name`, `password`, `create_at`, `update_a
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `jenis_penangan`
+--
+ALTER TABLE `jenis_penangan`
+  ADD UNIQUE KEY `jenis_penangan` (`jenis_penangan`);
 
 --
 -- Indexes for table `obat`
@@ -131,7 +156,8 @@ ALTER TABLE `pasien`
 ALTER TABLE `penangan`
   ADD PRIMARY KEY (`id_penanganan`),
   ADD KEY `dokter` (`id_user`),
-  ADD KEY `pas` (`id_pasien`);
+  ADD KEY `pas` (`id_pasien`),
+  ADD KEY `penangan` (`jenis_penangan`);
 
 --
 -- Indexes for table `rekap_obat`
@@ -154,7 +180,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pasien` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -171,7 +197,8 @@ ALTER TABLE `user`
 --
 ALTER TABLE `penangan`
   ADD CONSTRAINT `dokter` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `pas` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pas` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `penangan` FOREIGN KEY (`jenis_penangan`) REFERENCES `jenis_penangan` (`jenis_penangan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rekap_obat`
