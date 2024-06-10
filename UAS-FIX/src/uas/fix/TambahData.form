@@ -44,7 +44,7 @@
                                               <Component id="jLabel4" min="-2" pref="170" max="-2" attributes="0"/>
                                               <Component id="jLabel5" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                               <Component id="txtjenis" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtnama" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
+                                              <Component id="txtkode" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel8" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                           <Component id="txtobat" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
@@ -52,11 +52,11 @@
                                       <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel7" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                          <Component id="txtjurusan" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
+                                          <Component id="txtidentitas" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
                                           <Component id="jLabel6" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                           <Component id="txtdiagnosa" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
                                           <Component id="jLabel9" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                          <Component id="txtbiaya" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
+                                          <Component id="txtjumlahobat" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                   </Group>
@@ -67,7 +67,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="430" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="tambah" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -86,12 +86,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtnama" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txtkode" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtjurusan" max="32767" attributes="0"/>
+                      <Component id="txtidentitas" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
@@ -117,11 +117,11 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel9" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtbiaya" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txtjumlahobat" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="tambah" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -393,10 +393,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nama"/>
+        <Property name="text" type="java.lang.String" value="Kode Penanganan"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtnama">
+    <Component class="javax.swing.JTextField" name="txtkode">
     </Component>
     <Component class="javax.swing.JTextField" name="txtjenis">
       <Events>
@@ -424,14 +424,14 @@
         <Property name="text" type="java.lang.String" value="Diagnosa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtjurusan">
+    <Component class="javax.swing.JTextField" name="txtidentitas">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Jurusan"/>
+        <Property name="text" type="java.lang.String" value="No Identitas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtobat">
@@ -444,10 +444,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Jenis Obat"/>
+        <Property name="text" type="java.lang.String" value="Nama Obat"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="tambah">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="11" green="11" red="84" type="rgb"/>
@@ -458,10 +458,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DAFTAR"/>
+        <Property name="text" type="java.lang.String" value="TAMBAH"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tambahActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -469,12 +469,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Biaya"/>
+        <Property name="text" type="java.lang.String" value="Jumlah Obat"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtbiaya">
+    <Component class="javax.swing.JTextField" name="txtjumlahobat">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbiayaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtjumlahobatActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

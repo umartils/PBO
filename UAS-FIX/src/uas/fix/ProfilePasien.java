@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import uas.fix.Pasien;
+import uas.fix.TesKoneksi;
 /**
  *
  * @author NekoMorie
@@ -21,8 +23,51 @@ public class ProfilePasien extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
-    public ProfilePasien() {
+    public ProfilePasien(String NoIdentitas) {
         initComponents();
+tampil_table();
+noidenprofile.setText(NoIdentitas);
+String nomorIden = noidenprofile.getText();
+
+// Perbaikan query SQL
+String query = "SELECT * FROM pasien WHERE NoIdentitas = '" + nomorIden + "'";
+
+// Manajemen sumber daya dengan try-with-resources
+try (
+    java.sql.Connection configDB = (java.sql.Connection) TesKoneksi.configDB();
+    java.sql.Statement s = configDB.createStatement();
+    java.sql.ResultSet r = s.executeQuery(query)
+) {
+    while (r.next()) {
+        // Ambil data dari setiap kolom dan set teks ke komponen UI
+        String nama = r.getString("nama");
+        String noIdentitas = r.getString("NoIdentitas");
+        String identitas = r.getString("Identitas");
+        String jurusan = r.getString("jurusan");
+        String jk = r.getString("jk");
+        String no_telp = r.getString("no_telp");
+        String no_wali = r.getString("no_wali");
+        String alamat = r.getString("alamat");
+        String riwayat_penyakit = r.getString("riwayat_penyakit");
+        String goldar = r.getString("gol_darah");
+        String alergi = r.getString("alergi_obat");
+
+        namaprofile.setText(nama);
+        notelpprofile.setText(no_telp);
+        jurusanprofile.setText(jurusan);
+        idenprofile.setText(identitas);
+        penyakitprofile.setText(riwayat_penyakit);
+        alergiprofile.setText(alergi);
+        goldarprofile.setText(goldar);
+        jkprofile.setText(jk);
+        waliprofile.setText(no_wali);
+        alamatprofile.setText(alamat);
+    }
+} catch (SQLException e) {
+    e.printStackTrace(); // Cetak stack trace untuk debugging
+}
+
+
         
     }
 
@@ -46,29 +91,33 @@ public class ProfilePasien extends javax.swing.JFrame {
         LogOut = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         nama = new javax.swing.JLabel();
-        namaField = new javax.swing.JTextField();
         jurusan = new javax.swing.JLabel();
-        jurusanField = new javax.swing.JTextField();
+        jurusanprofile = new javax.swing.JTextField();
         no_wali = new javax.swing.JLabel();
-        no_waliField = new javax.swing.JTextField();
         jk = new javax.swing.JLabel();
-        jkField = new javax.swing.JTextField();
         riwayat_penyakit = new javax.swing.JLabel();
-        riwayat_penyakitField = new javax.swing.JTextField();
         identitas = new javax.swing.JLabel();
-        identitasField = new javax.swing.JTextField();
         no_telp = new javax.swing.JLabel();
-        no_telpField = new javax.swing.JTextField();
         alamat = new javax.swing.JLabel();
-        alamatField = new javax.swing.JTextField();
         gol_darah = new javax.swing.JLabel();
-        gol_darahField = new javax.swing.JTextField();
         alergi_obat = new javax.swing.JLabel();
-        alergi_obatField = new javax.swing.JTextField();
-        daftar = new javax.swing.JButton();
+        notelpprofile = new javax.swing.JTextField();
+        waliprofile = new javax.swing.JTextField();
+        alamatprofile = new javax.swing.JTextField();
+        idenprofile = new javax.swing.JTextField();
+        penyakitprofile = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        alergiprofile = new javax.swing.JTextField();
+        goldarprofile = new javax.swing.JTextField();
+        jkprofile = new javax.swing.JTextField();
+        noidenprofile = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        UBAH = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        namaprofile = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_riwayat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,7 +244,7 @@ public class ProfilePasien extends javax.swing.JFrame {
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 129, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(184, 17, 17));
@@ -212,77 +261,71 @@ public class ProfilePasien extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel2.setText("Pasien");
+        jLabel2.setText("Profile Pasien");
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        nama.setText("Nama : ");
 
-        jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jLabel3.setText("Copyright 2024 © Teknik Komputer Kampus UPI Cibiru All rights reserved.");
+        jurusan.setText("Jurusan : ");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(377, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(274, 274, 274))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
+        no_wali.setText("Alamat");
 
-        nama.setText("Nama");
+        jk.setText("No Telepon Wali  :");
 
-        namaField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaFieldActionPerformed(evt);
-            }
-        });
+        riwayat_penyakit.setText("Riwayat Penyakit :");
 
-        jurusan.setText("Jurusan");
+        identitas.setText("No Identitas");
 
-        no_wali.setText("No Telepon Wali");
+        no_telp.setText("No Telepon : ");
 
-        jk.setText("Jenis Kelamin");
-
-        jkField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jkFieldActionPerformed(evt);
-            }
-        });
-
-        riwayat_penyakit.setText("Riwayat Penyakit ");
-
-        identitas.setText("Identitas");
-
-        identitasField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                identitasFieldActionPerformed(evt);
-            }
-        });
-
-        no_telp.setText("No Telepon");
-
-        alamat.setText("Alamat");
+        alamat.setText("Identitas");
 
         gol_darah.setText("Golongan Darah");
 
         alergi_obat.setText("Alergi Obat");
 
-        daftar.setBackground(new java.awt.Color(132, 17, 17));
-        daftar.setForeground(new java.awt.Color(255, 255, 255));
-        daftar.setText("Daftar");
-        daftar.addActionListener(new java.awt.event.ActionListener() {
+        waliprofile.setEditable(false);
+        waliprofile.setEnabled(false);
+
+        jLabel4.setText("Jenis Kelamin");
+
+        goldarprofile.setEditable(false);
+        goldarprofile.setEnabled(false);
+
+        noidenprofile.setEditable(false);
+        noidenprofile.setEnabled(false);
+
+        jLabel5.setText("Riwayat Pengobatan :");
+
+        UBAH.setBackground(new java.awt.Color(132, 17, 17));
+        UBAH.setForeground(new java.awt.Color(255, 255, 255));
+        UBAH.setText("Ubah");
+        UBAH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarActionPerformed(evt);
+                UBAHActionPerformed(evt);
             }
         });
+
+        jButton2.setBackground(new java.awt.Color(132, 17, 17));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Hapus");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        tbl_riwayat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Penyakit", "Golongan Darah", "Alergi Obat", "Penanganan"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_riwayat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,46 +335,64 @@ public class ProfilePasien extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(440, 440, 440)
-                                        .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(namaField)
-                                            .addComponent(jurusanField)
-                                            .addComponent(no_waliField)
-                                            .addComponent(jkField)
-                                            .addComponent(riwayat_penyakitField, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                                            .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jk, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(riwayat_penyakit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(108, 108, 108)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(identitasField)
-                                            .addComponent(no_telpField)
-                                            .addComponent(alamatField)
-                                            .addComponent(gol_darahField)
-                                            .addComponent(alergi_obatField, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                                            .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(UBAH)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton2))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(no_wali, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(no_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jk))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(idenprofile, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                                .addComponent(alamatprofile)
+                                                .addComponent(waliprofile)
+                                                .addComponent(notelpprofile)
+                                                .addComponent(jurusanprofile)
+                                                .addComponent(namaprofile))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(riwayat_penyakit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(alergi_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(alergiprofile)
+                                                .addComponent(penyakitprofile)))
+                                        .addGroup(layout.createSequentialGroup()
                                             .addComponent(gol_darah, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(alergi_obat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(416, 416, 416)
-                        .addComponent(daftar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(goldarprofile, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(identitas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(noidenprofile)
+                                                .addComponent(jkprofile, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))))
+                        .addContainerGap(142, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,52 +400,50 @@ public class ProfilePasien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UBAH)
+                    .addComponent(jButton2))
+                .addGap(7, 7, 7)
                 .addComponent(jLabel2)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nama)
-                    .addComponent(identitas))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(identitasField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(identitas)
+                    .addComponent(noidenprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namaprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jurusan)
-                    .addComponent(no_telp))
-                .addGap(18, 18, 18)
+                    .addComponent(jurusanprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jkprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jurusanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(no_telpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(no_wali)
-                    .addComponent(alamat))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(no_waliField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alamatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(no_telp)
+                    .addComponent(notelpprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gol_darah)
+                    .addComponent(goldarprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jk)
-                    .addComponent(gol_darah))
-                .addGap(18, 18, 18)
+                    .addComponent(waliprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alergi_obat)
+                    .addComponent(alergiprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jkField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gol_darahField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(no_wali)
+                    .addComponent(alamatprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(riwayat_penyakit)
-                    .addComponent(alergi_obat))
-                .addGap(18, 18, 18)
+                    .addComponent(penyakitprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(riwayat_penyakitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alergi_obatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(daftar)
+                    .addComponent(alamat)
+                    .addComponent(idenprofile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -393,8 +452,8 @@ public class ProfilePasien extends javax.swing.JFrame {
 
    
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
-        ProfilePasien dashboard = new ProfilePasien();
-        dashboard.setVisible(true);
+        dashboard home = new dashboard();
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DashboardActionPerformed
 
@@ -406,13 +465,13 @@ public class ProfilePasien extends javax.swing.JFrame {
 
     private void PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasienActionPerformed
         // TODO add your handling code here:
-        ProfilePasien Pasien = new ProfilePasien();
-        Pasien.setVisible(true);
+        Pasien pasien = new Pasien();
+        pasien.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_PasienActionPerformed
 
     private void PenanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PenanganActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_PenanganActionPerformed
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
@@ -425,58 +484,56 @@ public class ProfilePasien extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
 
-    private void namaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namaFieldActionPerformed
-
-    private void jkFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jkFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jkFieldActionPerformed
-
-    private void identitasFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identitasFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_identitasFieldActionPerformed
-
-    private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
-        // TODO add your handling code here:
-        String nama = namaField.getText();
-        String jurusan = jurusanField.getText();
-        String no_wali = no_waliField.getText();
-        String jk = jkField.getText();
-        String riwayat_penyakit = riwayat_penyakitField.getText();
-        String identitas = identitasField.getText();
-        String no_telp = no_telpField.getText();
-        String alamat = alamatField.getText();
-        String gol_darah = gol_darahField.getText();
-        String alergi_obat = alergi_obatField.getText();
+    private void UBAHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UBAHActionPerformed
         
-        if (nama.isEmpty() || jurusan.isEmpty() || no_wali.isEmpty() || jk.isEmpty() || riwayat_penyakit.isEmpty() || identitas.isEmpty() || no_telp.isEmpty() || alamat.isEmpty() || gol_darah.isEmpty() || alergi_obat.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Semua harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try (Connection conn = TesKoneksi.configDB()){
-                String sql = "INSERT INTO pasien (nama, jurusan, no_wali, jk, riwayat_penyakit, identitas, no_telp, alamat, gol_darah, alergi_obat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setString(1, nama);
-                statement.setString(2, jurusan);
-                statement.setString(3, no_wali);
-                statement.setString(4, jk);
-                statement.setString(5, riwayat_penyakit);
-                statement.setString(6, identitas);
-                statement.setString(7, no_telp);
-                statement.setString(8, alamat);
-                statement.setString(9, gol_darah);
-                statement.setString(10, alergi_obat);
-                
-                int rowsInserted = statement.executeUpdate();
-                if (rowsInserted > 0) {
-                    JOptionPane.showMessageDialog(this, "Pasien berhasil ditambahkan!");
-                    this.dispose();
+        LihatPasien LP = new LihatPasien();
+        LP.setVisible(true);
+        
+        
+        String nama = namaprofile.getText();
+        String nomorIden = noidenprofile.getText(); 
+        String identitas= idenprofile.getText();
+        String jurusan = jurusanprofile.getText();
+        String no_telp = notelpprofile.getText();
+        String riwayat_penyakit = penyakitprofile.getText();
+        String alamat = alamatprofile.getText();
+        
+        try{
+            String queryTambah = "UPDATE pasien set nama = '"+nama+"', identitas = '"+identitas+"', jurusan = '"+jurusan+"', no_telp = '"+no_telp+"', riwayat_penyakit = '"+riwayat_penyakit+"', alamat = '"+alamat+"'  where NoIdentitas =  '"+nomorIden+"' ";
+            java.sql.Connection konekTambah = (Connection)TesKoneksi.configDB();
+            java.sql.PreparedStatement state = konekTambah.prepareStatement(queryTambah);
+            state.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
+            Pasien Back = new Pasien();
+            Back.setVisible(true);
+            this.dispose();
+            
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ubah Data Gagal");
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }   catch (Exception e) {
-                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah data pasien", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_UBAHActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String noIdentitas = noidenprofile.getText();
+        
+        try{
+            String queryTambah = "DELETE FROM pasien where NoIdentitas =  '"+noIdentitas+"' ";
+            java.sql.Connection konekHapus = (Connection)TesKoneksi.configDB();
+            java.sql.PreparedStatement state = konekHapus.prepareStatement(queryTambah);
+            state.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+            Pasien Back = new Pasien();
+            Back.setVisible(true);
+            this.dispose();
+            
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Hapus Data Gagal");
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
-    }//GEN-LAST:event_daftarActionPerformed
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,12 +564,45 @@ public class ProfilePasien extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProfilePasien().setVisible(true);
+     private void tampil_table()
+    {
+        DefaultTableModel tb = new DefaultTableModel();
+        tb.addColumn("No");
+        tb.addColumn("Diagnosa");
+        tb.addColumn("Jenis Penanganan");
+        tb.addColumn ("Tanggal");
+        String noIdentitas = noidenprofile.getText();
+        
+        
+        try {
+          int counter = 1;
+          String query = "SELECT * FROM penangan \n" +
+          "JOIN user ON penangan.id_user = user.id\n" +
+          "JOIN pasien ON penangan.id_pasien = pasien.id_pasien\n" +
+          "JOIN jenis_penangan ON penangan.jenis_penangan = jenis_penangan.jenis_penangan where pasien.NoIdentitas = '"+ noIdentitas +"'" ;
+          
+            java.sql.Connection configDB = (java.sql.Connection)TesKoneksi.configDB();
+            
+            java.sql.Statement s = configDB.createStatement();
+            
+            java.sql.ResultSet r = s.executeQuery(query);
+            
+            while (r.next()) {
+                tb.addRow(new Object[]{
+                    counter++,
+                    r.getString("nama"),
+                    r.getString("diagnosa"),
+                    r.getString("jenis_penanganan"),
+                    r.getString("created_at")
+                });
             }
-        });
+            tbl_riwayat.setModel(tb);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+     
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dashboard;
@@ -520,34 +610,39 @@ public class ProfilePasien extends javax.swing.JFrame {
     private javax.swing.JButton Pasien;
     private javax.swing.JButton Penangan;
     private javax.swing.JButton Profile;
+    private javax.swing.JButton UBAH;
     private javax.swing.JButton User;
     private javax.swing.JLabel alamat;
-    private javax.swing.JTextField alamatField;
+    public javax.swing.JTextField alamatprofile;
     private javax.swing.JLabel alergi_obat;
-    private javax.swing.JTextField alergi_obatField;
-    private javax.swing.JButton daftar;
+    public javax.swing.JTextField alergiprofile;
     private javax.swing.JLabel gol_darah;
-    private javax.swing.JTextField gol_darahField;
+    public javax.swing.JTextField goldarprofile;
+    public javax.swing.JTextField idenprofile;
     private javax.swing.JLabel identitas;
-    private javax.swing.JTextField identitasField;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jk;
-    private javax.swing.JTextField jkField;
+    public javax.swing.JTextField jkprofile;
     private javax.swing.JLabel jurusan;
-    private javax.swing.JTextField jurusanField;
+    public javax.swing.JTextField jurusanprofile;
     private javax.swing.JLabel nama;
-    private javax.swing.JTextField namaField;
+    private javax.swing.JTextField namaprofile;
     private javax.swing.JLabel no_telp;
-    private javax.swing.JTextField no_telpField;
     private javax.swing.JLabel no_wali;
-    private javax.swing.JTextField no_waliField;
+    public javax.swing.JTextField noidenprofile;
+    public javax.swing.JTextField notelpprofile;
+    public javax.swing.JTextField penyakitprofile;
     private javax.swing.JLabel riwayat_penyakit;
-    private javax.swing.JTextField riwayat_penyakitField;
+    private javax.swing.JTable tbl_riwayat;
+    public javax.swing.JTextField waliprofile;
     // End of variables declaration//GEN-END:variables
 }
+   

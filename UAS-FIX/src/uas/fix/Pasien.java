@@ -61,13 +61,13 @@ public class Pasien extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tambah = new javax.swing.JButton();
-        layar1 = new javax.swing.JDesktopPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_pasien = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         cari = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Daftar Pasien");
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -196,7 +196,7 @@ public class Pasien extends javax.swing.JFrame {
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 437, Short.MAX_VALUE))
+                .addGap(0, 129, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(184, 17, 17));
@@ -213,7 +213,7 @@ public class Pasien extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel2.setText("Pasien");
+        jLabel2.setText("Daftar Pasien");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -228,14 +228,14 @@ public class Pasien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(274, 274, 274))
+                .addGap(307, 307, 307))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         tambah.setBackground(new java.awt.Color(132, 17, 17));
@@ -246,9 +246,6 @@ public class Pasien extends javax.swing.JFrame {
                 tambahActionPerformed(evt);
             }
         });
-
-        layar1.setBackground(new java.awt.Color(255, 255, 255));
-        layar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tbl_pasien.setAutoCreateRowSorter(true);
         tbl_pasien.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
@@ -314,29 +311,6 @@ public class Pasien extends javax.swing.JFrame {
             tbl_pasien.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        layar1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout layar1Layout = new javax.swing.GroupLayout(layar1);
-        layar1.setLayout(layar1Layout);
-        layar1Layout.setHorizontalGroup(
-            layar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1004, Short.MAX_VALUE)
-            .addGroup(layar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layar1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 992, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        layar1Layout.setVerticalGroup(
-            layar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
-            .addGroup(layar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layar1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
         cari.setBackground(new java.awt.Color(132, 17, 17));
         cari.setForeground(new java.awt.Color(255, 255, 255));
         cari.setText("Cari Pasien");
@@ -356,27 +330,26 @@ public class Pasien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(tambah)
-                                .addGap(18, 18, 18)
-                                .addComponent(cari)
-                                .addGap(210, 210, 210))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(layar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(1004, Short.MAX_VALUE))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jLabel2)
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tambah)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cari)
+                                .addGap(118, 118, 118))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(136, 136, 136)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(49, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,18 +361,17 @@ public class Pasien extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(108, 108, 108)
-                        .addComponent(layar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tambah)
-                            .addComponent(cari))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                            .addComponent(cari))))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -418,6 +390,8 @@ public class Pasien extends javax.swing.JFrame {
         tb.addColumn("Jurusan");
         tb.addColumn("No Telepon");
         tb.addColumn("Penyakit");
+        tb.addColumn("Golongan Darah");
+        tb.addColumn("Alergi Obat");
         
         
         try {
@@ -438,7 +412,9 @@ public class Pasien extends javax.swing.JFrame {
                     r.getString("Identitas"),
                     r.getString("jurusan"),
                     r.getString("no_telp"),
-                    r.getString("riwayat_penyakit")
+                    r.getString("riwayat_penyakit"),
+                    r.getString("gol_darah"),
+                    r.getString("alergi_obat")
                 });
             }
             tbl_pasien.setModel(tb);
@@ -499,30 +475,19 @@ public class Pasien extends javax.swing.JFrame {
 //        String isi = coba();
         int baris = tbl_pasien.rowAtPoint(evt.getPoint());
         
-        
-        String no_idenitas = tbl_pasien.getValueAt(baris, 1).toString();
-        LihatPasien LP = new LihatPasien();
-        layar1.add(LP);
-        LP.setVisible(true);
-        
         TableModel tm = tbl_pasien.getModel();
         
+        
         String nama = tm.getValueAt(baris, 1).toString();
-        String NoIdentitas = tm.getValueAt(baris, 2).toString();    
-        String identitas= tm.getValueAt(baris, 3).toString();
-        String jurusan = tm.getValueAt(baris, 4).toString();
-        String no_telp = tm.getValueAt(baris, 5).toString();
-        String riwayat_penyakit = tm.getValueAt(baris, 6).toString();
+        String NoIdentitas = tm.getValueAt(baris, 2).toString();
         
-        LP.txtnama.setText(nama);
-        LP.txtidentitas.setText(NoIdentitas);
-        LP.txtno_telp.setText(no_telp);
-        LP.combo_jurusan.setSelectedItem(jurusan);
-        LP.combo_identitas.setSelectedItem(identitas);
-        LP.txt_riwayat.setText(riwayat_penyakit);
+        ProfilePasien PP = new ProfilePasien(NoIdentitas);
         
-        LP.pack();
-        LP.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        PP.setVisible(true);
+        this.dispose();
+        
+        PP.pack();
+        PP.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_tbl_pasienMouseClicked
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
@@ -584,7 +549,6 @@ public class Pasien extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JDesktopPane layar1;
     private javax.swing.JButton tambah;
     private javax.swing.JTable tbl_pasien;
     // End of variables declaration//GEN-END:variables

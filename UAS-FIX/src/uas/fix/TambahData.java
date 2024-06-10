@@ -4,6 +4,9 @@
  */
 package uas.fix;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -41,18 +44,18 @@ public class TambahData extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtnama = new javax.swing.JTextField();
+        txtkode = new javax.swing.JTextField();
         txtjenis = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtdiagnosa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtjurusan = new javax.swing.JTextField();
+        txtidentitas = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtobat = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        tambah = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtbiaya = new javax.swing.JTextField();
+        txtjumlahobat = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,7 +221,7 @@ public class TambahData extends javax.swing.JFrame {
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Nama");
+        jLabel4.setText("Kode Penanganan");
 
         txtjenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +242,7 @@ public class TambahData extends javax.swing.JFrame {
         jLabel6.setText("Diagnosa");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Jurusan");
+        jLabel7.setText("No Identitas");
 
         txtobat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,24 +251,24 @@ public class TambahData extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("Jenis Obat");
+        jLabel8.setText("Nama Obat");
 
-        jButton1.setBackground(new java.awt.Color(132, 17, 17));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("DAFTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tambah.setBackground(new java.awt.Color(132, 17, 17));
+        tambah.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        tambah.setForeground(new java.awt.Color(255, 255, 255));
+        tambah.setText("TAMBAH");
+        tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tambahActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("Biaya");
+        jLabel9.setText("Jumlah Obat");
 
-        txtbiaya.addActionListener(new java.awt.event.ActionListener() {
+        txtjumlahobat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbiayaActionPerformed(evt);
+                txtjumlahobatActionPerformed(evt);
             }
         });
 
@@ -293,22 +296,22 @@ public class TambahData extends javax.swing.JFrame {
                                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtjenis)
-                                                .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(txtkode, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtobat, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(201, 201, 201)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtjurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtidentitas, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtdiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtjumlahobat, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(47, 47, 47)))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(430, 430, 430)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -323,11 +326,11 @@ public class TambahData extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtkode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtjurusan)))
+                        .addComponent(txtidentitas)))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -347,9 +350,9 @@ public class TambahData extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtbiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtjumlahobat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(205, 205, 205)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -403,26 +406,30 @@ public class TambahData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtobatActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nama = txtnama.getText();
-        String jenis_penangan = txtjenis.getText();
-        String jurusan = txtjurusan.getText();
-        String diagnosa = txtdiagnosa.getText();
-        String riwayat_penyakit = txtriwayat_penyakit.getText();
-        String identitas = txtidentitas.getText();
-        String no_telp = txtno_telp.getText();
-        String alamat = txtalamat.getText();
-        String gol_darah = txtgol_darah.getText();
-        String alergi_obat = txtalergi_obat.getText();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+       String Kode = txtkode.getText();
+       String NoIden = txtidentitas.getText();
+       String jenis = txtjenis.getText();
+       String namaObat = txtobat.getText();
+       int jumlahObat = Integer.parseInt(txtjumlahobat.getText());
+       Invo IV = new Invo(NoIden, namaObat, jenis, jumlahObat);
+//       int obatField = Integer.parseInt(IV.txtobat.getText());
+//       int penangField = Integer.parseInt(IV.txtpenanganan.getText());
+//       int total = obatField + penangField;
+//       String fieldTot = String.valueOf(total);
+//       IV.txttotal.setText(fieldTot);
+       IV.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_tambahActionPerformed
 
-    private void txtbiayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbiayaActionPerformed
+    private void txtjumlahobatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtjumlahobatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbiayaActionPerformed
+    }//GEN-LAST:event_txtjumlahobatActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dashboard;
@@ -431,7 +438,6 @@ public class TambahData extends javax.swing.JFrame {
     private javax.swing.JButton Penangan;
     private javax.swing.JButton Profile;
     private javax.swing.JButton User;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -445,11 +451,13 @@ public class TambahData extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtbiaya;
+    private javax.swing.JButton tambah;
     private javax.swing.JTextField txtdiagnosa;
+    private javax.swing.JTextField txtidentitas;
     private javax.swing.JTextField txtjenis;
-    private javax.swing.JTextField txtjurusan;
-    private javax.swing.JTextField txtnama;
+    private javax.swing.JTextField txtjumlahobat;
+    private javax.swing.JTextField txtkode;
     private javax.swing.JTextField txtobat;
     // End of variables declaration//GEN-END:variables
 }
+

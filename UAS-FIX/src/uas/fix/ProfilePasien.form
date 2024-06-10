@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -27,54 +27,82 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" max="32767" attributes="0"/>
-                          <Component id="jPanel4" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nama" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="440" max="-2" attributes="0"/>
-                                      <Component id="identitas" min="-2" pref="86" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="namaField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jurusanField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="no_waliField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jkField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="riwayat_penyakitField" alignment="0" pref="369" max="32767" attributes="0"/>
-                                          <Component id="jurusan" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                                          <Component id="no_wali" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                          <Component id="jk" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                                          <Component id="riwayat_penyakit" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="UBAH" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="no_wali" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="alamat" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jurusan" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
+                                              <Component id="no_telp" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <Component id="nama" min="-2" pref="56" max="-2" attributes="0"/>
+                                              <Component id="jk" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="idenprofile" pref="330" max="32767" attributes="0"/>
+                                              <Component id="alamatprofile" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="waliprofile" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="notelpprofile" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jurusanprofile" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="namaprofile" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="identitasField" max="32767" attributes="0"/>
-                                          <Component id="no_telpField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="alamatField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="gol_darahField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="alergi_obatField" alignment="0" pref="369" max="32767" attributes="0"/>
-                                          <Component id="no_telp" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                                          <Component id="alamat" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                                          <Component id="gol_darah" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                                          <Component id="alergi_obat" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="riwayat_penyakit" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <Component id="alergi_obat" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="alergiprofile" max="32767" attributes="0"/>
+                                              <Component id="penyakitprofile" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="gol_darah" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="goldarprofile" pref="287" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel4" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <Component id="identitas" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="noidenprofile" max="32767" attributes="0"/>
+                                              <Component id="jkprofile" pref="287" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="700" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="142" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="416" max="-2" attributes="0"/>
-                      <Component id="daftar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -86,62 +114,58 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="UBAH" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nama" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="identitas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noidenprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="namaprofile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="namaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="identitasField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jurusan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jurusanprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jkprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="no_telp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="notelpprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="gol_darah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="goldarprofile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jurusanField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="no_telpField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="no_wali" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="alamat" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="no_waliField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="alamatField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jk" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="gol_darah" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jkField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="gol_darahField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="riwayat_penyakit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="waliprofile" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="alergi_obat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="alergiprofile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="riwayat_penyakitField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="alergi_obatField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="no_wali" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="alamatprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="riwayat_penyakit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="penyakitprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="alamat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="idenprofile" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="397" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="daftar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -208,7 +232,7 @@
                   <Component id="Profile" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="LogOut" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="129" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -365,130 +389,132 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Poppins" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pasien"/>
+        <Property name="text" type="java.lang.String" value="Profile Pasien"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel4">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Poppins" size="12" style="0"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="377" max="32767" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Copyright 2024 &#xa9; Teknik Komputer Kampus UPI Cibiru All rights reserved."/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="nama">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nama"/>
+        <Property name="text" type="java.lang.String" value="Nama : "/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="namaField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namaFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jurusan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jurusan"/>
+        <Property name="text" type="java.lang.String" value="Jurusan : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jurusanField">
+    <Component class="javax.swing.JTextField" name="jurusanprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="no_wali">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="No Telepon Wali"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="no_waliField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jk">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Jenis Kelamin"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jkField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jkFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="riwayat_penyakit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Riwayat Penyakit "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="riwayat_penyakitField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="identitas">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Identitas"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="identitasField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="identitasFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="no_telp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="No Telepon"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="no_telpField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="alamat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alamat"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="alamatField">
+    <Component class="javax.swing.JLabel" name="jk">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No Telepon Wali  :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="riwayat_penyakit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Riwayat Penyakit :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="identitas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No Identitas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="no_telp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No Telepon : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="alamat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Identitas"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="gol_darah">
       <Properties>
         <Property name="text" type="java.lang.String" value="Golongan Darah"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="gol_darahField">
-    </Component>
     <Component class="javax.swing.JLabel" name="alergi_obat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alergi Obat"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="alergi_obatField">
+    <Component class="javax.swing.JTextField" name="notelpprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="daftar">
+    <Component class="javax.swing.JTextField" name="waliprofile">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="alamatprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="idenprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="penyakitprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jenis Kelamin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="alergiprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="goldarprofile">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jkprofile">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="noidenprofile">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Riwayat Pengobatan :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="UBAH">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="11" green="11" red="84" type="rgb"/>
@@ -496,11 +522,75 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Daftar"/>
+        <Property name="text" type="java.lang.String" value="Ubah"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="daftarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UBAHActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="11" green="11" red="84" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Hapus"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="namaprofile">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tbl_riwayat">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Penyakit" type="java.lang.Object"/>
+                <Column editable="true" title="Golongan Darah" type="java.lang.Object"/>
+                <Column editable="true" title="Alergi Obat" type="java.lang.Object"/>
+                <Column editable="true" title="Penanganan" type="java.lang.Object"/>
+              </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
