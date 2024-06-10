@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 09, 2024 at 01:50 PM
+-- Generation Time: Jun 10, 2024 at 02:53 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -91,7 +91,8 @@ CREATE TABLE `penangan` (
   `id_pasien` int NOT NULL,
   `jenis_penangan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
   `diagnosa` text NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `nopenangan` char(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,7 +126,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `name`, `password`, `create_at`, `update_at`) VALUES
-(1, 'Vi', 'Davi Hanan', '123', NULL, NULL);
+(1, 'Vi', 'Davi Hanan', '123', '2024-06-10 09:28:01', '2024-06-10 09:28:05');
 
 --
 -- Indexes for dumped tables
